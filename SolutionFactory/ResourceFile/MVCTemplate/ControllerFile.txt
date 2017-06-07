@@ -1,0 +1,87 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using #SolutionName#.Model;
+using #SolutionName#.DataBaseAccess;
+
+namespace #SolutionName#.ManagementWeb.Controllers
+{
+    public class #ClassName#Controller : BaseController
+    {
+        //
+        // GET: 
+		#ClassName#DataBaseAccess access = new #ClassName#DataBaseAccess();
+
+		//默认页面，返回可分页列表
+        public ActionResult Index()
+        {
+			int pageIndex = 1;
+            int pageSize = 20;
+            string where = "";
+            string order = "#DefaultOrder#";
+            try
+            {
+                if (!string.IsNullOrEmpty(Request.QueryString["condition"]))
+                {
+                    where = Request.QueryString["condition"];
+                }
+                if (!string.IsNullOrEmpty(Request.QueryString["pageIndex"]))
+                {
+                    pageIndex = Convert.ToInt32(Request.QueryString["pageIndex"]);
+                }
+                if (!string.IsNullOrEmpty(Request.QueryString["pageSize"]))
+                {
+                    pageSize = Convert.ToInt32(Request.QueryString["pageSize"]);
+                }
+            }
+            catch (Exception ex)
+            {
+				
+            }
+            int recordCount;
+            var list = access.Select#ClassName#ToPage(pageIndex, pageSize, where, order, out recordCount);
+            ViewBag.recordCount = recordCount;
+            ViewBag.pageCount = recordCount % pageSize == 0 ? (recordCount / pageSize) : (recordCount / pageSize) + 1;
+            return View(list);
+        }
+
+		//对象详细信息(对应表单)
+        public ActionResult #ClassName#Info()
+        {
+            #ModelName# model = null;
+            if (!string.IsNullOrEmpty(Request.QueryString["KeyID"]))
+            {
+                model = access.SelectByPrimaryKey(Request.QueryString["KeyID"]);
+            }
+            return View(model);
+        }
+
+        // 新增或更新对象信息
+        public int Save#ClassName#Info(#ModelName# model)
+        {
+            int result = 0;
+            //新增
+            if (string.IsNullOrEmpty(model.#PrimaryKeyName#))
+            {
+                model.#PrimaryKeyName# = Guid.NewGuid().ToString();
+
+                result = access.Add#ClassName#(model);
+            }
+            //修改
+            else
+            {
+                result = access.Update#ClassName#(model);
+            }
+            return result;
+        }
+
+		// 根据主键删除
+        public int DeleteByPrimaryKey(string KeyID)
+        {
+            return access.Delete#ClassName#ByPrimaryKey(KeyID);
+        }
+
+    }
+}

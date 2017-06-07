@@ -1,0 +1,4 @@
+﻿Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FactoryTest", "FactoryTest\FactoryTest.csproj", "{166B9326-A262-44F1-8AA5-D505CEAE9A95}"
+EndProject

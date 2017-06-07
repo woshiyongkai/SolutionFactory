@@ -1,0 +1,378 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3E23BC0A-59BD-456C-9244-FD3F36FFD720}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SolutionFactory</RootNamespace>
+    <AssemblyName>SolutionFactory</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <EmbeddedResource Include="ResourceFile\Template\AccessBase.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\Template\AccessFile.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\Template\AssemblyInfo.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\Template\CsprojTemplate.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\Template\SlnTemplate.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\CommonFunction.cs" />
+    <Compile Include="Common\DBHelper.cs" />
+    <Compile Include="Common\EntityClassInfo.cs" />
+    <Compile Include="Common\EntityFieldsInfo.cs" />
+    <Compile Include="Common\LibraryClassInfo.cs" />
+    <Compile Include="Common\WriteFiles.cs" />
+    <Compile Include="ResourceFile\DBHelper\HelperBase.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="ResourceFile\DBHelper\DBHelper.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="ResourceFile\DBHelper\DBHelper_Static.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="GlobalProperty.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="StyleResource.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\fonts\fontawesome-webfont.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\fonts\fontawesome-webfont.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\fonts\fontawesome-webfont.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\fonts\fontawesome-webfont.woff2">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\fonts\FontAwesome.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\fonts\Simple-Line-Icons.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\fonts\Simple-Line-Icons.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\fonts\Simple-Line-Icons.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\Web.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\Views\Shared\Error.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\Views\Shared\_Layout.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\Views\_ViewStart.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\Views\Web.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <None Include="ResourceFile\MVCTemplate\packages\EntityFramework.5.0.0\Content\App.config.transform" />
+    <None Include="ResourceFile\MVCTemplate\packages\EntityFramework.5.0.0\Content\Web.config.transform" />
+    <None Include="ResourceFile\MVCTemplate\packages\EntityFramework.5.0.0\EntityFramework.5.0.0.nupkg" />
+    <None Include="ResourceFile\MVCTemplate\packages\EntityFramework.5.0.0\tools\EntityFramework.PS3.psd1" />
+    <None Include="ResourceFile\MVCTemplate\packages\EntityFramework.5.0.0\tools\EntityFramework.psd1" />
+    <None Include="ResourceFile\MVCTemplate\packages\EntityFramework.5.0.0\tools\EntityFramework.psm1" />
+    <None Include="ResourceFile\MVCTemplate\packages\EntityFramework.5.0.0\tools\init.ps1" />
+    <None Include="ResourceFile\MVCTemplate\packages\EntityFramework.5.0.0\tools\install.ps1" />
+    <None Include="ResourceFile\MVCTemplate\packages\EntityFramework.5.0.0\tools\Redirect.config" />
+    <None Include="ResourceFile\MVCTemplate\packages\EntityFramework.5.0.0\tools\Redirect.VS11.config" />
+    <None Include="ResourceFile\MVCTemplate\packages\EntityFramework.zh-Hans.5.0.0\EntityFramework.zh-Hans.5.0.0.nupkg" />
+    <None Include="ResourceFile\MVCTemplate\packages\Microsoft.AspNet.Mvc.3.0.20105.1\Microsoft.AspNet.Mvc.3.0.20105.1.nupkg" />
+    <None Include="ResourceFile\MVCTemplate\packages\Microsoft.AspNet.Mvc.zh-Hans.3.0.20105.1\Microsoft.AspNet.Mvc.zh-Hans.3.0.20105.1.nupkg" />
+    <None Include="ResourceFile\MVCTemplate\packages\Microsoft.AspNet.Providers.Core.1.1\Microsoft.AspNet.Providers.Core.1.1.nupkg" />
+    <None Include="ResourceFile\MVCTemplate\packages\Microsoft.AspNet.Providers.Core.zh-Hans.1.1\Microsoft.AspNet.Providers.Core.zh-Hans.1.1.nupkg" />
+    <None Include="ResourceFile\MVCTemplate\packages\Microsoft.AspNet.Providers.LocalDB.1.1\content\web.config.transform" />
+    <None Include="ResourceFile\MVCTemplate\packages\Microsoft.AspNet.Providers.LocalDB.1.1\Microsoft.AspNet.Providers.LocalDB.1.1.nupkg" />
+    <None Include="ResourceFile\MVCTemplate\packages\Microsoft.AspNet.Providers.LocalDB.1.1\tools\Install.ps1" />
+    <None Include="ResourceFile\MVCTemplate\packages\Microsoft.AspNet.Razor.1.0.20105.408\Microsoft.AspNet.Razor.1.0.20105.408.nupkg" />
+    <None Include="ResourceFile\MVCTemplate\packages\Microsoft.AspNet.Razor.zh-Hans.1.0.20105.408\Microsoft.AspNet.Razor.zh-Hans.1.0.20105.408.nupkg" />
+    <None Include="ResourceFile\MVCTemplate\packages\Microsoft.AspNet.WebPages.1.0.20105.408\Microsoft.AspNet.WebPages.1.0.20105.408.nupkg" />
+    <None Include="ResourceFile\MVCTemplate\packages\Microsoft.AspNet.WebPages.zh-Hans.1.0.20105.408\Microsoft.AspNet.WebPages.zh-Hans.1.0.20105.408.nupkg" />
+    <None Include="ResourceFile\MVCTemplate\packages\Microsoft.Web.Infrastructure.1.0.0.0\Microsoft.Web.Infrastructure.1.0.0.0.nupkg" />
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\Views\Shared\_Layout_Base.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\Css\bootstrap.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\Css\components-rounded.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\Css\custom.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\Css\font-awesome.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\Css\layout.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\Css\login.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\Css\simple-line-icons.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\Css\toastr.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\fonts\fontawesome-webfont.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\fonts\Simple-Line-Icons.dev.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\fonts\Simple-Line-Icons.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\Global.asax.cs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\Global.asax.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\Scripts\Base.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\Scripts\bootstrap.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\Scripts\dashboard.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\Scripts\form-validation.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\Scripts\jquery-1.7.1.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\Scripts\jquery.validate-additional-methods.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\Scripts\jquery.validate.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\Scripts\jquery.validate.unobtrusive.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\Scripts\MicrosoftAjax.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\Scripts\MicrosoftMvcAjax.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\Scripts\toastr.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\ViewDetails.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\ViewIndex.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\ControllerFile.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\MVCCsprojTemplate.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\fav.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\Scripts\jquery.unobtrusive-ajax.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\Css\Themes\blue.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\Css\Themes\dark.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\Css\Themes\default.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\Css\Themes\grey.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\Css\Themes\light.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\Img\remove-icon-small.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\Img\sidebar-toggle-dark.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\Img\sidebar-toggle-light.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <Content Include="ResourceFile\MVCTemplate\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll" />
+    <EmbeddedResource Include="ResourceFile\MVCTemplate\ControllerBaseFile.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <Resource Include="ResourceFile\MVCTemplate\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.xml" />
+    <Content Include="ResourceFile\MVCTemplate\packages\EntityFramework.5.0.0\lib\net40\zh-Hans\EntityFramework.resources.dll" />
+    <Resource Include="ResourceFile\MVCTemplate\packages\EntityFramework.5.0.0\lib\net40\zh-Hans\EntityFramework.xml" />
+    <Content Include="ResourceFile\MVCTemplate\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll" />
+    <Resource Include="ResourceFile\MVCTemplate\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.xml" />
+    <Content Include="ResourceFile\MVCTemplate\packages\EntityFramework.5.0.0\lib\net45\zh-Hans\EntityFramework.resources.dll" />
+    <Resource Include="ResourceFile\MVCTemplate\packages\EntityFramework.5.0.0\lib\net45\zh-Hans\EntityFramework.xml" />
+    <Resource Include="ResourceFile\MVCTemplate\packages\EntityFramework.5.0.0\tools\about_EntityFramework.help.txt" />
+    <Content Include="ResourceFile\MVCTemplate\packages\EntityFramework.5.0.0\tools\EntityFramework.PowerShell.dll" />
+    <Content Include="ResourceFile\MVCTemplate\packages\EntityFramework.5.0.0\tools\EntityFramework.PowerShell.Utility.dll" />
+    <Content Include="ResourceFile\MVCTemplate\packages\EntityFramework.5.0.0\tools\migrate.exe" />
+    <Content Include="ResourceFile\MVCTemplate\packages\EntityFramework.zh-Hans.5.0.0\lib\net40\zh-Hans\EntityFramework.resources.dll" />
+    <Resource Include="ResourceFile\MVCTemplate\packages\EntityFramework.zh-Hans.5.0.0\lib\net40\zh-Hans\EntityFramework.xml" />
+    <Content Include="ResourceFile\MVCTemplate\packages\EntityFramework.zh-Hans.5.0.0\lib\net45\zh-Hans\EntityFramework.resources.dll" />
+    <Resource Include="ResourceFile\MVCTemplate\packages\EntityFramework.zh-Hans.5.0.0\lib\net45\zh-Hans\EntityFramework.xml" />
+    <Content Include="ResourceFile\MVCTemplate\packages\Microsoft.AspNet.Mvc.3.0.20105.1\lib\net40\System.Web.Mvc.dll" />
+    <Resource Include="ResourceFile\MVCTemplate\packages\Microsoft.AspNet.Mvc.3.0.20105.1\lib\net40\System.Web.Mvc.xml" />
+    <Content Include="ResourceFile\MVCTemplate\packages\Microsoft.AspNet.Mvc.zh-Hans.3.0.20105.1\lib\net40\zh-Hans\System.Web.Mvc.resources.dll" />
+    <Resource Include="ResourceFile\MVCTemplate\packages\Microsoft.AspNet.Mvc.zh-Hans.3.0.20105.1\lib\net40\zh-Hans\System.Web.Mvc.xml" />
+    <Content Include="ResourceFile\MVCTemplate\packages\Microsoft.AspNet.Providers.Core.1.1\lib\net40\System.Web.Providers.dll" />
+    <Content Include="ResourceFile\MVCTemplate\packages\Microsoft.AspNet.Providers.Core.1.1\lib\net40\zh-Hans\System.Web.Providers.resources.dll" />
+    <Content Include="ResourceFile\MVCTemplate\packages\Microsoft.AspNet.Providers.Core.1.1\readme.html" />
+    <Content Include="ResourceFile\MVCTemplate\packages\Microsoft.AspNet.Providers.Core.zh-Hans.1.1\lib\net40\zh-Hans\System.Web.Providers.resources.dll" />
+    <Content Include="ResourceFile\MVCTemplate\packages\Microsoft.AspNet.Razor.1.0.20105.408\lib\net40\System.Web.Razor.dll" />
+    <Resource Include="ResourceFile\MVCTemplate\packages\Microsoft.AspNet.Razor.1.0.20105.408\lib\net40\System.Web.Razor.xml" />
+    <Content Include="ResourceFile\MVCTemplate\packages\Microsoft.AspNet.Razor.zh-Hans.1.0.20105.408\lib\net40\zh-Hans\System.Web.Razor.resources.dll" />
+    <Resource Include="ResourceFile\MVCTemplate\packages\Microsoft.AspNet.Razor.zh-Hans.1.0.20105.408\lib\net40\zh-Hans\system.web.razor.xml" />
+    <Content Include="ResourceFile\MVCTemplate\packages\Microsoft.AspNet.WebPages.1.0.20105.408\lib\net40\System.Web.Helpers.dll" />
+    <Resource Include="ResourceFile\MVCTemplate\packages\Microsoft.AspNet.WebPages.1.0.20105.408\lib\net40\System.Web.Helpers.xml" />
+    <Content Include="ResourceFile\MVCTemplate\packages\Microsoft.AspNet.WebPages.1.0.20105.408\lib\net40\System.Web.WebPages.Deployment.dll" />
+    <Resource Include="ResourceFile\MVCTemplate\packages\Microsoft.AspNet.WebPages.1.0.20105.408\lib\net40\System.Web.WebPages.Deployment.xml" />
+    <Content Include="ResourceFile\MVCTemplate\packages\Microsoft.AspNet.WebPages.1.0.20105.408\lib\net40\System.Web.WebPages.dll" />
+    <Content Include="ResourceFile\MVCTemplate\packages\Microsoft.AspNet.WebPages.1.0.20105.408\lib\net40\System.Web.WebPages.Razor.dll" />
+    <Resource Include="ResourceFile\MVCTemplate\packages\Microsoft.AspNet.WebPages.1.0.20105.408\lib\net40\System.Web.WebPages.Razor.xml" />
+    <Resource Include="ResourceFile\MVCTemplate\packages\Microsoft.AspNet.WebPages.1.0.20105.408\lib\net40\System.Web.WebPages.xml" />
+    <Content Include="ResourceFile\MVCTemplate\packages\Microsoft.AspNet.WebPages.zh-Hans.1.0.20105.408\lib\net40\System.Web.Helpers.resources.dll" />
+    <Resource Include="ResourceFile\MVCTemplate\packages\Microsoft.AspNet.WebPages.zh-Hans.1.0.20105.408\lib\net40\system.web.helpers.xml" />
+    <Content Include="ResourceFile\MVCTemplate\packages\Microsoft.AspNet.WebPages.zh-Hans.1.0.20105.408\lib\net40\System.Web.WebPages.Deployment.resources.dll" />
+    <Resource Include="ResourceFile\MVCTemplate\packages\Microsoft.AspNet.WebPages.zh-Hans.1.0.20105.408\lib\net40\system.web.webpages.deployment.xml" />
+    <Content Include="ResourceFile\MVCTemplate\packages\Microsoft.AspNet.WebPages.zh-Hans.1.0.20105.408\lib\net40\System.Web.WebPages.Razor.resources.dll" />
+    <Resource Include="ResourceFile\MVCTemplate\packages\Microsoft.AspNet.WebPages.zh-Hans.1.0.20105.408\lib\net40\system.web.webpages.razor.xml" />
+    <Content Include="ResourceFile\MVCTemplate\packages\Microsoft.AspNet.WebPages.zh-Hans.1.0.20105.408\lib\net40\System.Web.WebPages.resources.dll" />
+    <Resource Include="ResourceFile\MVCTemplate\packages\Microsoft.AspNet.WebPages.zh-Hans.1.0.20105.408\lib\net40\system.web.webpages.xml" />
+    <Content Include="ResourceFile\MVCTemplate\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

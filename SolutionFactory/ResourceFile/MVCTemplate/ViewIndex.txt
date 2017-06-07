@@ -1,0 +1,108 @@
+﻿@{
+    ViewBag.Title = "列表页面";
+}
+@model List<#SolutionName#.Model.#ModelName#>
+
+<!--可选颜色 red blue green purple 等-->
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-table"></i>#ClassName#
+        </div>
+        <div class="actions">
+            <a href="javascript:fn_Add#ClassName#()" class="btn btn-default btn-sm">
+                <i class="fa fa-plus"></i>添加 </a>
+            <a href="javascript:;" class="btn btn-default btn-sm">
+                <i class="fa fa-print"></i>打印 </a>
+        </div>
+    </div>
+    <div class="portlet-body">
+        <div id="sample_3_wrapper" class="dataTables_wrapper no-footer">
+
+            <div class="table-scrollable">
+                <table class="table table-striped table-bordered table-hover table-checkable order-column dataTable no-footer" id="sample_3" role="grid" aria-describedby="sample_3_info">
+                    <thead>
+                        <tr role="row">
+                            <th class="table-checkbox sorting_disabled" rowspan="1" colspan="1" aria-label="">序号</th>
+                            #THHtmlStr#
+                            <th class="sorting" tabindex="0" aria-controls="sample_3" rowspan="1" colspan="1">操作 </th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody_UserList">
+                        @for (int i = 0; i < Model.Count(); i++)
+                        {
+                            
+                        <tr class="gradeX odd" role="row">
+                            <td>@(i+1)</td>
+                            #TDHtmlStr#
+                            <td class="editTD" style="width:160px;">
+                                <button class='btn btn-sm red btn-outline filter-cancel'  onclick="fn_Delete#ClassName#('@Model[i].#PrimaryKeyName#');">
+                                        <i class='fa fa-times'></i>删除</button>
+                                <button class='btn btn-sm blue btn-outline filter-cancel'  onclick="fn_Edit#ClassName#('@Model[i].#PrimaryKeyName#');">
+                                        <i class='fa fa-edit'></i>编辑</button>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--BEGIN 弹出添加用户对话框-->
+<div class="modal fade draggable-modal" id="editModal" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog modal-companyedit">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">#ClassName#</h4>
+            </div>
+            <div class="modal-body">
+                <iframe id="iframe_editInfo" name="iframe_editInfo" src="" class="iframe_default iframe_companyedit" style="height:400px;"></iframe>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn dark btn-outline" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn green" onclick="fn_SaveIframe()">保存更改</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!--END 弹出添加用户对话框-->
+
+<script>
+    function fn_Add#ClassName#()
+    {
+        $("#iframe_editInfo").attr("src", "#ClassName#/#ClassName#Info");
+        $('#editModal').modal('show');
+    }
+    function fn_Edit#ClassName#(KeyID) {
+        $("#iframe_editInfo").attr("src", "#ClassName#/#ClassName#Info?KeyID=" + KeyID);
+        $('#editModal').modal('show');
+    }
+    function fn_SaveSuccessed()
+    {
+        $('#editModal').modal('hide');
+        ToPage(1);
+    }
+    function fn_SaveIframe()
+    {
+        window.iframe_editInfo.fn_SubmitForm();
+    }
+    function fn_Delete#ClassName#(KeyID)
+    {
+        if (confirm("这将无法恢复,确定要删除吗？")) {
+            $.get("#ClassName#/DeleteByPrimaryKey?KeyID=" + KeyID + "&ot" + getTimeSpan(), function (response) {
+                if (response > 0) {
+                    ToPage(1);
+                }
+                else {
+                    toastr.error('错误. 删除失败,请联系管理员!');
+                }
+            });
+        }
+    }
+</script>

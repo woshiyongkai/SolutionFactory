@@ -1,0 +1,73 @@
+﻿@{
+    ViewBag.Title = "详细信息";
+    Layout = "~/Views/Shared/_Layout_Base.cshtml";
+}
+@model #SolutionName#.Model.#ModelName#
+<!-- BEGIN VALIDATION STATES-->
+<div class="portlet light portlet-fit portlet-form ">
+    <div class="portlet-body">
+        <!-- BEGIN FORM-->
+        @using (Ajax.BeginForm("Save#ClassName#Info", "#ClassName#", new AjaxOptions { HttpMethod = "Post", OnSuccess = "fn_PostSucessed", InsertionMode = InsertionMode.Replace }, new { @id = "#ClassName#_form", @class = "form-horizontal" }))
+        {
+            <div class="form-body no-padding-ver">
+                #RowHtmlStr#
+                <div style="display: none;">
+                    @Html.HiddenFor(x => x.#PrimaryKeyName#)
+                </div>
+            </div>
+            
+        }
+        <!-- END FORM-->
+    </div>
+</div>
+<!-- END VALIDATION STATES-->
+
+<script type="text/ecmascript">
+    $(document).ready(function () {
+        $("##ClassName#_form").validate({
+            rules: {
+                #ValidataHtmlStr#
+            },
+            invalidHandler: function (event, validator) { 
+				toastr.error("你输入的信息不正确.");
+                App.scrollTo(error2, -200);
+            },
+
+            errorPlacement: function (error, element) { // render error placement for each input type
+                var icon = $(element).parent('.input-icon').children('i');
+                icon.removeClass('fa-check').addClass("fa-warning");
+                icon.attr("data-original-title", error.text()).tooltip({ 'container': 'body' });
+            },
+
+            highlight: function (element) { // hightlight error inputs
+                $(element)
+                    .closest('.form-group').removeClass("has-success").addClass('has-error'); // set error class to the control group   
+            },
+
+            unhighlight: function (element) { // revert the change done by hightlight
+
+            },
+
+            success: function (label, element) {
+                var icon = $(element).parent('.input-icon').children('i');
+                $(element).closest('.form-group').removeClass('has-error').addClass('has-success'); // set success class to the control group
+                icon.removeClass("fa-warning").addClass("fa-check");
+            },
+
+        });
+    });
+    function fn_SubmitForm() {
+        var result = $("##ClassName#_form").valid();
+        if (result) {
+            $("##ClassName#_form").submit();
+        }
+    }
+    function fn_PostSucessed(response) {
+        if (response > 0) {
+            parent.fn_SaveSuccessed();
+        }
+        else {
+            toastr.error('错误. 添加数据失败,请联系管理员!');
+        }
+    }
+</script>

@@ -1,0 +1,61 @@
+/* here you can put your own css to customize and override the theme */
+body {
+width:100% !important; 
+    height:100% !important;
+}
+.sitelogin  {
+    background:url(../img/2.jpg);
+}
+.page-header.navbar .page-logo .logo-default {
+    margin: 12px 0;
+    border-radius: 7px;
+}
+
+.head-title {
+    position: absolute;
+    margin-left: 0px;
+    margin-top: 24px;
+    /* color: #fff; */
+    font-size: 24px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.head-setting {
+padding:15px 0px 0px 10px;
+font-size:24px;
+cursor:pointer;
+}
+.no-padding-ver {
+    padding:0px 20px !important;
+}
+.no-padding-hor {
+    padding:20px 0px !important;
+}
+.editTD {
+    padding:2px 5px !important;
+}
+.iframe_default {
+    width:100%;
+    height:100%;
+    border:none;
+}
+.iframe_useredit {
+    height:320px;
+}
+.iframe_companyedit {
+    height:540px;
+}
+.modal-useredit {
+    width:520px;
+}
+.modal-companyedit {
+    width:520px;
+}
+.addtionpagerstyle {
+    text-align:center;
+}
+.page-bar {
+    margin-top:-15px;
+    margin-bottom:-5px;
+}

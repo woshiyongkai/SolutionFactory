@@ -1,0 +1,164 @@
+﻿using System;
+using System.Text;
+using System.Data;
+using System.Collections.Generic;
+using SolutionFactory.DBAccess;
+using #SolutionName#.Model;
+using #SolutionName#.EntityFactory;
+
+
+namespace #SolutionName#.DataBaseAccess
+{
+    public class #ClassName#DataBaseAccess : AccessBase
+    {
+        //根据实体对象添加数据
+        public int Add#ClassName#(#ModelClassName# entity)
+        {
+            string addSql = String.Format(@"INSERT INTO #TableName# (#AllAddColumns#)
+					VALUES (#AllAddValues#)"
+                    #AllFields#);
+            return DBHelper.ExecuteNonQuery(addSql);
+        }
+
+        //根据主键删除一条数据
+        public int Delete#ClassName#ByPrimaryKey(string PrimaryKey)
+        {
+            string delSql = @"DELETE FROM #TableName# WHERE #PrimaryKey# ='" + PrimaryKey + " ' ";
+            return DBHelper.ExecuteNonQuery(delSql);
+        }
+
+        //根据实体对象更新数据
+        public int Update#ClassName#(#ModelClassName# entity)
+        {
+            string updateSql = String.Format(@"UPDATE #TableName# SET #AllUpdateColumns# WHERE #PrimaryKey#='{#LastFieldsIndex#}'"
+                    #AllUpdateFields#);
+            return DBHelper.ExecuteNonQuery(updateSql);
+        }
+
+        //根据主键查询
+        public #ModelClassName# SelectByPrimaryKey(string PrimaryKeyId)
+        {
+            #ModelClassName# entity = null;
+            IDataReader reader = null;
+            try
+            {
+                string whereSql = "#PKSelectSql#";
+                reader = DBHelper.ExecuteReader(whereSql);
+                while (reader.Read())
+                {
+                    entity = #ClassName#EntityFactory.Build#ClassName#Entity(reader);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+                if (reader != null)
+                    reader.Close();
+            }
+            return entity;
+        }
+
+        /// <summary>
+        /// Where条件查询
+        /// </summary>
+        /// <param name="where">Where条件,当为空时不限条件(不用写Where关键字,表名.列名的方式表达)</param>
+        /// <param name="order">排序字段,当为空时按默认排序(不用写 Order by关键字,倒序时可追加" Desc")</param>
+        /// <param name="size">相当于Top(size),当小于等于0时,不限大小</param>
+        /// <returns>查询结果的List集合</returns>
+        public List<#ModelClassName#> Select#ClassName#ByWhere(string where, string order, int size)
+        {
+            List<#ModelClassName#> list = new List<#ModelClassName#>();
+            IDataReader reader = null;
+            try
+            {
+                string whereSql = "SELECT #WhereSelectSql# ";
+                if (size > 0)
+                {
+                    whereSql = "SELECT TOP(" + size + ") #WhereSelectSql# ";
+                }
+                if (!string.IsNullOrEmpty(where))
+                {
+                    whereSql += " WHERE " + where;
+                }
+                if (!string.IsNullOrEmpty(order))
+                {
+                    whereSql += " ORDER BY " + order;
+                }
+                reader = DBHelper.ExecuteReader(whereSql);
+                while (reader.Read())
+                {
+                    #ModelClassName# entity = #ClassName#EntityFactory.Build#ClassName#Entity(reader);
+                    list.Add(entity);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+                if (reader != null)
+                    reader.Close();
+            }
+            return list;
+        }
+
+        /// <summary>
+        /// 分页查询
+        /// </summary>
+        /// <param name="pageIndex">第几页,从第一页开始</param>
+        /// <param name="pageSize">每页显示的数据条数</param>
+        /// <param name="where">Where条件,当为空时不限条件(不用写Where关键字,表名.列名的方式表达)</param>
+        /// <param name="order">排序字段,当为空时按默认排序(不用写 Order by关键字,倒序时可追加" Desc")</param>
+        /// <returns>查询结果的List集合</returns>
+        public List<#ModelClassName#> Select#ClassName#ToPage(int pageIndex, int pageSize, string where, string order,out int count)
+        {
+            List<#ModelClassName#> list = new List<#ModelClassName#>();
+            IDataReader reader = null;
+            try
+            {
+                string countSql = string.Format("select count(1) from #TableName#");
+                string pageSql = string.Format(@"select top {0} *
+                from 
+                (
+                select row_number() over(order by {1}) as rownumber,#PagerSelectSql#
+                ) A
+                where rownumber > {2}", pageSize, order, (pageIndex - 1) * pageSize);
+                if (!string.IsNullOrEmpty(where))
+                {
+                    pageSql = string.Format(@"select top {0} *
+                from 
+                (
+                select row_number() over(order by {1}) as rownumber,#PagerSelectSql#
+				where {2}
+                ) A
+                where rownumber > {3}", pageSize, order,where, (pageIndex - 1) * pageSize);
+				countSql = string.Format("select count(1) from #TableName# where " + where);
+                }
+                count = (int)DBHelper.ExecuteScalar(countSql);
+                reader = DBHelper.ExecuteReader(pageSql);
+                while (reader.Read())
+                {
+                    #ModelClassName# entity = #ClassName#EntityFactory.Build#ClassName#Entity(reader);
+                    list.Add(entity);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+                if (reader != null)
+                    reader.Close();
+            }
+            return list;
+        }
+
+
+
+    }
+}

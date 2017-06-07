@@ -1,0 +1,213 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>SolutionFactory管理站点</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" type="image/x-icon" href="../fav.ico" media="screen" />
+    <!--[if IE 8]> <html lang="cn" class="ie8 no-js"> <![endif]-->
+    <!--[if IE 9]> <html lang="cn" class="ie9 no-js"> <![endif]-->
+    <!--引用css-->
+    <link href="@Url.Content("~/Content/Css/bootstrap.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Css/layout.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Css/Themes/light.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Css/simple-line-icons.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Css/components-rounded.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Css/font-awesome.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Css/custom.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/Css/toastr.css")" rel="stylesheet" />
+    <!--引用js-->
+    <script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/Base.js")"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate-additional-methods.js")"></script>
+    <script src="@Url.Content("~/Scripts/toastr.js")"></script>
+
+
+</head>
+
+<body class="page-container-bg-solid page-sidebar-closed-hide-logo">
+
+    <!-- BEGIN HEADER -->
+    <div class="page-header navbar navbar-static-top">
+        <!-- BEGIN HEADER INNER -->
+        <div class="page-header-inner ">
+            <!-- BEGIN LOGO -->
+            <div class="page-logo">
+                <a href="javascript:ToURL('/Home');">
+                    <h4 class="head-title">SolutionFactory</h4>
+                </a>
+                <div class="menu-toggler sidebar-toggler">
+                    <!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
+                </div>
+            </div>
+            <!-- END LOGO -->
+            <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+            <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse"></a>
+            <!-- END RESPONSIVE MENU TOGGLER -->
+            <!-- BEGIN 快捷菜单 -->
+            <div class="page-actions">
+                <div class="btn-group">
+                    <button type="button" class="btn red-haze btn-sm dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-plus"></i>&nbsp;
+                           
+                        <span class="hidden-sm hidden-xs">添加</span>&nbsp;
+                           
+                        <i class="fa fa-angle-down"></i>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li id="li_addCompany" style="display: none;">
+                            <a href="javascript:ToURL('#');">
+                                <i class="icon-docs"></i>&nbsp;新建 </a>
+                        </li>
+                        <li>
+                            <a href="javascript:ToURL('#');">
+                                <i class="icon-tag"></i>&nbsp;新建 </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- END 快捷菜单 -->
+            <!-- BEGIN 页面头部 -->
+            <div class="page-top">
+                <!-- BEGIN  头部搜索 -->
+                <!-- DOC: Apply "search-form-expanded" right after the "search-form" class to have half expanded search box -->
+                <form class="search-form search-form-expanded" action="page_general_search_3.html" method="GET">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="输入搜索关键字" name="query">
+                        <span class="input-group-btn">
+                            <a href="javascript;" class="btn submit">
+                                <i class="icon-magnifier"></i>
+                            </a>
+                        </span>
+                    </div>
+                </form>
+                <!-- END 头部搜索 -->
+                <!-- BEGIN TOP NAVIGATION MENU -->
+                <div class="top-menu">
+                    <ul class="nav navbar-nav pull-right">
+                        <!-- BEGIN USER LOGIN DROPDOWN -->
+                        <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+                        <li class="dropdown dropdown-user">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                <img alt="" class="img-circle" src=@Url.Content("~/fav.ico") />
+                                <span class="username username-hide-on-mobile">@Session["UserName"] </span>
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-default">
+                                <li>
+                                    <a href="javascript:ToURL('/user/newdomainadmin?UserID=@Session["UserID"]')">
+                                        <i class="icon-user"></i>个人信息 </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:ToURL('/user/newdomainadmin?UserID=@Session["UserID"]')">
+                                        <i class="icon-calendar"></i>修改密码 </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="#" onclick="ToURL('/Login/SignOut')">
+                                        <i class="icon-key"></i>安全退出 </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- END USER LOGIN DROPDOWN -->
+                </div>
+
+                <!-- END TOP NAVIGATION MENU -->
+            </div>
+            <!-- END 页面头部 -->
+        </div>
+        <!-- END HEADER INNER -->
+    </div>
+    <!-- END HEADER -->
+    <!-- BEGIN 主容器(container) -->
+    <div class="page-container">
+        <!-- BEGIN 菜单 -->
+        <div class="page-sidebar-wrapper">
+            <div class="page-sidebar navbar-collapse collapse">
+
+                <ul class="page-sidebar-menu  page-header-fixed page-sidebar-menu-hover-submenu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+                    <li class="nav-item start active open">
+                        <a href="javascript:ToURL('/Home');" class="nav-link nav-toggle">
+                            <i class="icon-home"></i>
+                            <span class="title">门户</span>
+                            <span class="selected"></span>
+                            <span class="arrow"></span>
+                        </a>
+                    </li>
+                            #ContentMenus#
+                    
+                    <li class="nav-item  ">
+                        <a href="javascript:ToURL('/SysLog');" class="nav-link nav-toggle">
+                            <i class="icon-puzzle"></i>
+                            <span class="title">查看日志</span>
+                            <span class="arrow"></span>
+                        </a>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="javascript:ToURL('/Dictionary');" class="nav-link nav-toggle">
+                            <i class="icon-settings"></i>
+                            <span class="title">系统配置</span>
+                            <span class="arrow"></span>
+                        </a>
+                    </li>
+                </ul>
+                <!-- END SIDEBAR MENU -->
+            </div>
+            <!-- END SIDEBAR -->
+        </div>
+        <!-- END 菜单 -->
+        <!-- BEGIN 主内容 -->
+        <div class="page-content-wrapper">
+            <!-- BEGIN CONTENT BODY -->
+            <div class="page-content" id="div-page-content-wrapper">
+                <!-- BEGIN 导航栏-->
+                <div class="page-bar">
+                    <ul class="page-breadcrumb breadcrumb">
+                        <li>
+                            <i class="icon-home"></i>
+                            <a href="index.html">Home</a>
+                            <i class="fa fa-angle-right"></i>
+                        </li>
+                        <li>
+                            <span>@ViewBag.Title</span>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END 导航栏-->
+                @RenderBody()
+
+
+            </div>
+            <!-- END CONTENT BODY -->
+        </div>
+        <!-- END 主内容 -->
+    </div>
+    <!-- END 主容器 -->
+
+    <!-- BEGIN FOOTER -->
+    <div class="page-footer">
+        <div class="page-footer-inner">
+            2016 &copy; SolutionFactory.
+               
+            <a href="http://www.google.com" title="SolutionFactory" target="_blank">SolutionFactory</a>
+        </div>
+    </div>
+    <!-- END FOOTER -->
+
+    <!--自定义script-->
+    <script type="text/ecmascript">
+        
+    <!-- 自动设定高度 -->
+        function autoHeight() {
+            var needheight = $(window).height() - 104;
+            $("#div-page-content-wrapper").css("min-height", needheight);
+           
+        }
+        autoHeight();
+    </script>
+</body>
+</html>

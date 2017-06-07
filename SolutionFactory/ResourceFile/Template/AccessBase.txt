@@ -1,0 +1,32 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using SolutionFactory.DBAccess;
+using System.Data.SqlClient;
+
+namespace #namespace#
+{
+    public class AccessBase
+    {
+        public int ExecuteNonQuery(string sql,params SqlParameter[] commandParameters)
+        {
+            return DBHelper.ExecuteNonQuery(sql,commandParameters);
+        }
+
+        public int ExecuteNonQueryProc(string procName, params SqlParameter[] commandParameters)
+        {
+            return DBHelper.ExecuteNonQueryProc(procName, commandParameters);
+        }
+
+        public SqlDataReader ExecuteReader(string cmdText, params SqlParameter[] commandParameters)
+        {
+            return DBHelper.ExecuteReader(cmdText, commandParameters);
+        }
+
+        public object ExecuteScalar(string cmdText, params SqlParameter[] commandParameters)
+        {
+            return DBHelper.ExecuteScalar(cmdText, commandParameters);
+        }
+    }
+}
